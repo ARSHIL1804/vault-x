@@ -6,7 +6,7 @@ import {
   getTokenTotalBalance,
 } from "@/lib/utils";
 import { API_CONSTANTS, APP_CONTANTS } from "@/lib/constants";
-import { SigningStargateClient } from "@cosmjs/stargate";
+import { SigningStargateClient } from "@/packages/@cosmjs/stargate";
 import { Coin } from "@/lib/interfaces";
 import { useSettings } from "@/app/providers/SettingsProvider";
 

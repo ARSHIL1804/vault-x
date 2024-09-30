@@ -6,10 +6,10 @@ import { generateMnemonic } from "bip39";
 import { Loader2, LucideCopy, LucideCopyCheck, LucideDownload, LucideLoader, LucideLoader2 } from "lucide-react";
 import Header from "@/components/Header";
 import { AlertBox } from "@/components/AlertBox";
-import {DirectSecp256k1HdWallet } from "@cosmjs/proto-signing"
+import {DirectSecp256k1HdWallet } from "@/packages/@cosmjs/proto-signing"
 import { Spinner } from "@/components/ui/spinner";
 import { useAccounts } from "@/app/providers/AccountProvider";
-import { stringToPath } from "@cosmjs/crypto";
+import { stringToPath } from "@/packages/@cosmjs/crypto";
 export default function Create() {
   const router = useRouter();
   const [seedPhrase, setSeedPhrase] = useState<string[]>([]);

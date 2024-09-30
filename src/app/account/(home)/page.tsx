@@ -5,7 +5,7 @@ import { getDataFromBrowserStorage } from "@/lib/browser";
 import { API_CONSTANTS, APP_CONTANTS } from "@/lib/constants";
 import { Token } from "@/lib/interfaces";
 import { convertTokenBalace } from "@/lib/utils";
-import { Secp256k1 } from "@cosmjs/crypto";
+import { Secp256k1 } from "@/packages/@cosmjs/crypto";
 export default function Home() {
   const { activeAccount } = useAccounts();
   const [tokens, setTokens] = useState<Token[]>([]);

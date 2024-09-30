@@ -1,4 +1,4 @@
-import { GasPrice } from "@cosmjs/stargate"
+import { GasPrice } from "@/packages/@cosmjs/stargate"
 
 export const APP_CONTANTS  = 
 {

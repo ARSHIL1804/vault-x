@@ -7,7 +7,7 @@ import AccountProfile from "@/components/AccountProfile";
 import { convertTokenBalace, getTokenTotalBalance, shortenAddress } from "@/lib/utils";
 import { LucideClock, LucideCopy, LucideCopyCheck, LucideHome, LucideSend, LucideSettings } from "lucide-react";
 import { API_CONSTANTS, APP_CONTANTS } from "@/lib/constants";
-import { SigningStargateClient } from "@cosmjs/stargate";
+import { SigningStargateClient } from "@/packages/@cosmjs/stargate";
 import { Coin } from "@/lib/interfaces";
 import Link from "next/link";
 

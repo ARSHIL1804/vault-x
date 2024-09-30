@@ -4,8 +4,8 @@ import { APP_CONTANTS } from "./constants";
 import { TRANSACTION_TYPE } from "./enums";
 import { Asset } from "./interfaces";
 
-import {Uint53, Decimal} from '@cosmjs/math'
-import { GasPrice } from "@cosmjs/stargate";
+import {Uint53, Decimal} from '@/packages/@cosmjs/math'
+import { GasPrice } from "@/packages/@cosmjs/stargate";
 
 import {AES,enc} from 'crypto-js';
 export function cn(...inputs: ClassValue[]) {

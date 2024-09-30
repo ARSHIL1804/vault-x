@@ -26,10 +26,10 @@ import {
   SigningStargateClient,
   StdFee,
   calculateFee,
-} from "@cosmjs/stargate";
+} from "@/packages/@cosmjs/stargate";
 import { Button } from "@/components/ui/button";
 import { useSettings } from "@/app/providers/SettingsProvider";
-import { DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
+import { DirectSecp256k1HdWallet } from "@/packages/@cosmjs/proto-signing";
 import { useAuth } from "@/app/providers/AuthProvider";
 export default function Home() {
   const { activeAccount, activeWallet } = useAccounts();

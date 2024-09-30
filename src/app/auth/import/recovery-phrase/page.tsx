@@ -28,7 +28,7 @@ export default function page() {
   return (
     <div className="w-full h-full flex flex-col flex-1 py-4">
       <Header title="Import Recovery Phrace"/>
-      <div className="flex flex-col mt-8 gap-2 bg-card p-4  rounded-md">
+      <div className="flex flex-col mt-4 gap-2 bg-card p-4  rounded-md">
         <div>
           <Label className="text-sm">Recovery Phrase</Label>
           <div className="flex items-center relative mt-1">

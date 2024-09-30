@@ -9,12 +9,12 @@ import {
   Algo,
   DirectSecp256k1HdWallet,
   makeCosmoshubPath,
-} from "@cosmjs/proto-signing";
+} from "@/packages/@cosmjs/proto-signing";
 import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
-import { QueryClient, StargateClient, setupBankExtension } from "@cosmjs/stargate";
-import { Tendermint34Client } from "@cosmjs/tendermint-rpc";
-import { stringToPath } from "@cosmjs/crypto";
+import { QueryClient, StargateClient, setupBankExtension } from "@/packages/@cosmjs/stargate";
+import { Tendermint34Client } from "@/packages/@cosmjs/tendermint-rpc";
+import { stringToPath } from "@/packages/@cosmjs/crypto";
 import { useAuth } from "./AuthProvider";
 
 
