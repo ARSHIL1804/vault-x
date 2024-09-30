@@ -86,7 +86,7 @@ export default function Home() {
       const coins = await client.getAllBalances(
         activeAccount.accountData.address
       );
-      for (var coin of coins) {
+      for (let coin of coins) {
         if (coin?.denom === "xfi") {
           setXfi({
             ...xfi,

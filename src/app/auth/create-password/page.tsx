@@ -13,7 +13,7 @@ import Header from "@/components/Header";
 import { isNullOrUndefined } from "@/lib/utils";
 import { APP_CONTANTS } from "@/lib/constants";
 import { useAuth } from "@/app/providers/AuthProvider";
-export default function page() {
+export default function CreatePassword() {
   const [showKey, setShowKey] = useState(false);
   const [passwords , setPasswords] = useState({
     password:"",

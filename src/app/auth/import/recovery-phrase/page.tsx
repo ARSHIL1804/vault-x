@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
 import { Textarea } from "@/components/ui/textarea";
 import { useAccounts } from "@/app/providers/AccountProvider";
-export default function page() {
+export default function RecoveryPhrase() {
   const [showKey, setShowKey] = useState(false);
   const [recoveryPhrase, setRecoveryPhrase] = useState<string>('')
   const router = useRouter();

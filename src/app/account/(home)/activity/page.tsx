@@ -96,7 +96,7 @@ export default function Home() {
           <div>
             {activities.map((transaction: any, index: number) => {
               return (
-                <div className="flex flex-row py-2 items-center">
+                <div key={index} className="flex flex-row py-2 items-center">
                   <div
                     className="w-[36px] h-[36px] rounded-full flex justify-center items-center font-semibold text-xl"
                     style={{

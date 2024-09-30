@@ -46,7 +46,7 @@ export default function Home() {
         ) : (
           tokens.map((token: any, index: number) => {
             return (
-              <div className="flex flex-row py-2">
+              <div key={index} className="flex flex-row py-2">
                 <div className="w-[36px] h-[36px] rounded-full flex justify-center items-center font-semibold text-xl" style={{ backgroundColor: APP_CONTANTS.TOKEN_BACKGROUND_COLOR[index] }}>
                   {token.name?.charAt(0)}
                 </div>

@@ -17,7 +17,7 @@ import { useAuth } from "@/app/providers/AuthProvider";
 import { getDataFromBrowserStorage, setDataToBrowserStorage, setDataToBrowserStoragemNonProtected } from "@/lib/browser";
 import { APP_CONTANTS } from "@/lib/constants";
 import { isNullOrUndefined } from "@/lib/utils";
-export default function page() {
+export default function Verify() {
   const [password, setPassword] = useState("");
   const [wrongPassword, setWrongPassword] = useState(false);
   const { verifyPassword, storePassword, setIsAuthenticated } = useAuth();
