@@ -11,7 +11,7 @@ import {
   makeCosmoshubPath,
 } from "@/packages/@cosmjs/proto-signing";
 import { useRouter } from "next/navigation";
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { QueryClient, StargateClient, setupBankExtension } from "@/packages/@cosmjs/stargate";
 import { Tendermint34Client } from "@/packages/@cosmjs/tendermint-rpc";
 import { stringToPath } from "@/packages/@cosmjs/crypto";

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAccounts } from "../providers/AccountProvider";
 import { usePathname, useRouter } from "next/navigation";
 import { Spinner } from "@/components/ui/spinner";
