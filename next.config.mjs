@@ -9,7 +9,4 @@ export default {
         },
       ];
     },
-    exportPathMap:{
-      distDir: "build",
-    }
 };
