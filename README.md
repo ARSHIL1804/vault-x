@@ -90,7 +90,7 @@ Crypto Ads: Run targeted ads on popular crypto platforms such as CoinMarketCap, 
 CrossFI Ecosystem: Partner with dApps, DeFi platforms, and NFT marketplaces on CrossFI to promote the wallet.
 Exchanges: Partner with exchanges for wallet integration and awareness.
 
-# 11. Success Metrics
+# 8. Success Metrics
 
 To evaluate the success of the wallet, the following KPIs will be tracked:
 
