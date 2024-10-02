@@ -90,7 +90,6 @@ export default function AuthProvider({
     }
     else{
       setIsAuthenticated(false);
-      router.push("/auth/verify");
     }
   }, [password]);
 
