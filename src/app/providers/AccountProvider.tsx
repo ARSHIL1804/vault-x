@@ -35,12 +35,14 @@ const AccountsContext = createContext<{
   addWallet: (mnemonic: string) => void;
   activeAccount: AccountInfromation | null;
   setActiveAccount: (account: AccountInfromation) => void;
+  changeWallet:(name:string)=>void;
 }>({
   wallets: [],
   activeWallet:null,
   addWallet: (mnemonic: string) => {},
   activeAccount: null,
   setActiveAccount: () => {},
+  changeWallet:(name:string)=>{}
 });
 
 export default function AccountsProvider({
@@ -66,6 +68,7 @@ export default function AccountsProvider({
       name:wallet.name,
       accountData:account
     }
+    setDataToBrowserStorage(APP_CONTANTS.USER_ACTIVE_WALLET_KEY,wallet, password);
     setActiveWallet(wallet)
     setActiveAccount(accountInfo);
   }
@@ -82,7 +85,7 @@ export default function AccountsProvider({
     const [_,account] = await wallet.getAccounts();
     console.log("Cosmos Address:", account);
     const newWallet:WalletInfromation = {
-      name: APP_CONTANTS.ACCOUNT_NAME_KEY + " " + (wallets.length + 1),
+      name: APP_CONTANTS.ACCOUNT_NAME_PREFIX + " " + (wallets.length + 1),
       serializedWallet: serializedWallet,
     };
 
@@ -90,15 +93,26 @@ export default function AccountsProvider({
       ...wallets,
       newWallet,
     ],password);
-    setDataToBrowserStorage(APP_CONTANTS.USER_ACTIVE_WALLET_KEY,newWallet, password);
-
     setWallets([...wallets, newWallet]);
     setActiveWalletAndAccount(newWallet);
   };
+
   async function getWallets(){
     const walletsFromStorage = getDataFromBrowserStorage(APP_CONTANTS.USER_WALLETS_KEY,password) || [];
     setWallets(walletsFromStorage);
   }
+
+  
+  function changeWallet(newWalletName:string){
+    const newActiveWallet = wallets.filter((value,index)=>{
+      return value.name === newWalletName
+    })[0];
+    if(newWalletName){
+      setActiveWalletAndAccount(newActiveWallet);
+    }
+  }
+
+
   useEffect(() => {
     if(!isAuthenticated){
       router.push('/auth/verify');
@@ -109,23 +123,27 @@ export default function AccountsProvider({
 
   useEffect(() => {
     if (wallets && wallets.length > 0) {
-      router.push("/account");
+      const activeWalletFromStorage = getDataFromBrowserStorage(APP_CONTANTS.USER_ACTIVE_WALLET_KEY,password) || null;
+      if(activeWalletFromStorage){
+        setActiveWalletAndAccount(activeWalletFromStorage);
+      }
+      else{
+        setActiveWalletAndAccount(wallets[0])
+      }
     } else {
       router.push("/auth/home");
       return;
     }
-    const activeWalletFromStorage = getDataFromBrowserStorage(APP_CONTANTS.USER_ACTIVE_WALLET_KEY,password) || null;
-    if(activeWalletFromStorage){
-      setActiveWalletAndAccount(activeWalletFromStorage);
-    }
-    else{
-      setActiveWalletAndAccount(wallets[0])
-    }
+
   }, [wallets]);
 
+  useEffect(()=>{
+    if(!activeAccount || !activeWallet)return
+    router.push("/account");
+  },[activeWallet,activeAccount])
   return (
     <AccountsContext.Provider
-      value={{ wallets, activeWallet,addWallet, activeAccount, setActiveAccount }}
+      value={{ wallets, activeWallet,addWallet, activeAccount, setActiveAccount, changeWallet }}
     >
       {children}
     </AccountsContext.Provider>

@@ -19,6 +19,7 @@ const AuthContext = createContext<{
   setIsAuthenticated: (isAuthenticated: boolean) => void;
   isAuthenticated: boolean;
   password: string;
+  lockWallet:()=>void;
 }>({
   verifyPassword: (data: string) => {
     return false;
@@ -27,6 +28,7 @@ const AuthContext = createContext<{
   setIsAuthenticated: (isAuthenticated: boolean) => {},
   isAuthenticated: false,
   password: "",
+  lockWallet:()=>{}
 });
 
 export default function AuthProvider({
@@ -68,15 +70,15 @@ export default function AuthProvider({
       router.push("/auth/create-password");
       return;
     }
-    const lastAuthenticationTime = getDataFromBrowserStorageNonProtected(
-      APP_CONTANTS.LAST_AUTH_TIME_KEY
-    ) || 0;
-    console.log(Date.now() - lastAuthenticationTime)
+    const lastAuthenticationTime =
+      getDataFromBrowserStorageNonProtected(APP_CONTANTS.LAST_AUTH_TIME_KEY) ||
+      0;
+    console.log(Date.now() - lastAuthenticationTime);
     if (
       Date.now() - lastAuthenticationTime <
       APP_CONTANTS.RE_AUTHENTICATION_TIME
     ) {
-      setPassword(og_password)
+      setPassword(og_password);
     } else {
       router.push("/auth/verify");
     }
@@ -85,6 +87,10 @@ export default function AuthProvider({
   useEffect(() => {
     if (password && verifyPassword(password)) {
       setIsAuthenticated(true);
+    }
+    else{
+      setIsAuthenticated(false);
+      router.push("/auth/verify");
     }
   }, [password]);
 
@@ -105,8 +111,16 @@ export default function AuthProvider({
       APP_CONTANTS.WALLET_PASSWORD_KEY,
       password
     );
-    setDataToBrowserStoragemNonProtected(APP_CONTANTS.LAST_AUTH_TIME_KEY,Date.now().toString());
+    setDataToBrowserStoragemNonProtected(
+      APP_CONTANTS.LAST_AUTH_TIME_KEY,
+      Date.now().toString()
+    );
   };
+
+  const lockWallet = () => {
+    setPassword('');
+    setIsAuthenticated(false);
+  }
   return (
     <AuthContext.Provider
       value={{
@@ -115,15 +129,16 @@ export default function AuthProvider({
         isAuthenticated,
         setIsAuthenticated,
         password,
+        lockWallet
       }}
     >
-      <SettingsProvider>
-        {isAuthenticated ? (
+      {isAuthenticated ? (
+        <SettingsProvider>
           <AccountsProvider>{children}</AccountsProvider>
-        ) : (
-          children
-        )}
-      </SettingsProvider>
+        </SettingsProvider>
+      ) : (
+        children
+      )}
     </AuthContext.Provider>
   );
 }

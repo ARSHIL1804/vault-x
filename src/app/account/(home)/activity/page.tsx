@@ -17,6 +17,7 @@ import {
   LucideFileCode,
   LucideFileQuestion,
   LucideRefreshCw,
+  LucideSearchX,
   LucideSend,
   LucideSendHorizontal,
   LucideSendToBack,
@@ -26,13 +27,13 @@ export default function Home() {
   const { activeAccount } = useAccounts();
   const [activities, setActivities] = useState<Activity[]>([]);
   const [hasNext, setHasNext] = useState(false);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
 
   const getTransactions = async (reset=false) => {
     const res = await fetch(
       API_CONSTANTS.XFI_SCAN_URL +
         API_CONSTANTS.XFI_SCAN_APIs.TRANSACTIONS +
-        `?address=${activeAccount.accountData.address}&page=${reset ? 1 : page+1}`
+        `?address=${activeAccount.accountData.address}&page=${reset ? 1 : page}`
     );
     const data = await res.json();
     setHasNext(data.hasNext || false);
@@ -89,9 +90,12 @@ export default function Home() {
         <span>Activity</span>
         <div className="text-primary font-semibold text-sm flex flex-row items-center cursor-pointer" onClick={()=>getTransactions(true)}>Refresh <LucideRefreshCw className="ml-2" size={16}/> </div>
       </div>
-      <div className="w-full px-4 bg-card flex-1 overflow-y-scroll">
+      <div className="w-full px-4 bg-card flex-1 overflow-y-auto">
         {activities.length == 0 ? (
-          <div>No Activity Yet</div>
+          <div className="h-full flex justify-center items-center flex-col gap-2">
+            <LucideSearchX size={36}/>
+            <span className="text-xl">No Activity Yet</span>
+          </div>
         ) : (
           <div>
             {activities.map((transaction: any, index: number) => {

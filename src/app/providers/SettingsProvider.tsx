@@ -36,12 +36,18 @@ export default function SettingsProvider({
   const [settings,setSettings] = useState<Settings>(defaultSettings);
 
   const saveSettings = (key,value) => {
-    setSettings({
-        ...settings,
-        [key]:value
-    });
-    setDataToBrowserStorage(key,value,password)
+    const newSettings = {
+      ...settings,
+      [key]:value
+    }
+    setSettings(newSettings);
+    setDataToBrowserStorage(APP_CONTANTS.WALLET_SETTINGS,newSettings,password)
   }
+
+  useEffect(()=>{
+    const settingsFromStorage = getDataFromBrowserStorage( APP_CONTANTS.WALLET_SETTINGS,password) || defaultSettings;
+    setSettings(settingsFromStorage)
+  },[])
   return (
     <SettingContext.Provider
       value={{

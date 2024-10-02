@@ -6,6 +6,7 @@ import { API_CONSTANTS, APP_CONTANTS } from "@/lib/constants";
 import { Token } from "@/lib/interfaces";
 import { convertTokenBalace } from "@/lib/utils";
 import { Secp256k1 } from "@/packages/@cosmjs/crypto";
+import { LucideSearchX } from "lucide-react";
 export default function Home() {
   const { activeAccount } = useAccounts();
   const [tokens, setTokens] = useState<Token[]>([]);
@@ -38,16 +39,24 @@ export default function Home() {
   return (
     <div className="flex flex-1 flex-col w-full mt-2">
       <div className="w-full px-4 py-2 text-md font-bold">
-        Tokens  <span className="text-subtext">{tokens.length}</span>
+        Tokens <span className="text-subtext">{tokens.length}</span>
       </div>
       <div className="w-full px-4 bg-card flex-1">
-        { tokens.length == 0 ? (
-          <div>No Tokens Found</div>
+        {tokens.length == 0 ? (
+          <div className="h-full flex justify-center items-center flex-col gap-2">
+            <LucideSearchX size={36} />
+            <span className="text-xl">No Tokens Found</span>
+          </div>
         ) : (
           tokens.map((token: any, index: number) => {
             return (
               <div key={index} className="flex flex-row py-2">
-                <div className="w-[36px] h-[36px] rounded-full flex justify-center items-center font-semibold text-xl" style={{ backgroundColor: APP_CONTANTS.TOKEN_BACKGROUND_COLOR[index] }}>
+                <div
+                  className="w-[36px] h-[36px] rounded-full flex justify-center items-center font-semibold text-xl"
+                  style={{
+                    backgroundColor: APP_CONTANTS.TOKEN_BACKGROUND_COLOR[index],
+                  }}
+                >
                   {token.name?.charAt(0)}
                 </div>
                 <div className="flex flex-col ml-2 w-[80%]">

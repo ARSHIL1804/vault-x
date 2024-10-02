@@ -16,12 +16,13 @@ import { useAccounts } from "@/app/providers/AccountProvider";
 import { LucideUser } from "lucide-react";
 import { Button } from "@/components/ui/button";
 export default function ManageAccounts() {
-  const { wallets, activeWallet } = useAccounts();
+  const { wallets, activeWallet, changeWallet } = useAccounts();
   const router = useRouter()
 
   function navigate(url:string){
     router.push(url);
   }
+
   return (
     <div className="p-4 h-full">
       <div className="rounded-md flex flex-col justify-between h-full">
@@ -35,6 +36,7 @@ export default function ManageAccounts() {
                     ? " text-primary"
                     : ""
                 }`}
+                onClick={()=>changeWallet(value.name)}
               >
                 <LucideUser />{" "}
                 <span className="ml-2 capitalize">{value.name}</span>

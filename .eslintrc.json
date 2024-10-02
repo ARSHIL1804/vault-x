@@ -47,7 +47,9 @@
     "no-unreachable": "warn",
     "no-undef": "error",
     "no-extra-semi": "warn",
-    "no-var": "warn"
+    "no-var": "warn",
+    "react/react-in-jsx-scope": "off"
+
   },
   "overrides": [
     {
@@ -58,5 +60,10 @@
         "mocha": true
       }
     }
-  ]
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 }

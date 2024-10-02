@@ -1,15 +1,15 @@
 import { GasPrice } from "@/packages/@cosmjs/stargate"
-
+import dotenv from  'dotenv'
 export const APP_CONTANTS  = 
 {
-    USER_WALLETS_KEY : "user-wallets",
-    USER_ACTIVE_WALLET_KEY:"user-active-wallet",
-    ACCOUNT_IMPORTED_TOKEN_KEY:"-account-tokens",
-    WALLET_PASSWORD_KEY : "wallet-password",
-    ACCOUNT_NAME_KEY : "Account",
-    LAST_AUTH_TIME_KEY: "LastAuthTime",
+    USER_WALLETS_KEY : process.env.NEXT_PUBLIC_KEY_PREFIX + "-user-wallets",
+    USER_ACTIVE_WALLET_KEY: process.env.NEXT_PUBLIC_KEY_PREFIX + "-user-active-wallet",
+    WALLET_PASSWORD_KEY : process.env.NEXT_PUBLIC_KEY_PREFIX + "-wallet-password",
+    LAST_AUTH_TIME_KEY: process.env.NEXT_PUBLIC_KEY_PREFIX + "-last-auth-time",
+    WALLET_SETTINGS: process.env.NEXT_PUBLIC_KEY_PREFIX + "-wallet-settings",
 
 
+    ACCOUNT_NAME_PREFIX : "Account",
     NETWORK :{
       Chain:'CrossFI Testnet',
       ChainID:4157
